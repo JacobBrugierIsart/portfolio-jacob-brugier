@@ -10,6 +10,16 @@
 <body>
   <!-- HEADER -->
   <header>
+    <div class="bike-animation">
+      <div class="road"></div>
+      <div class="hills">
+        <div class="hill hill-1"></div>
+        <div class="hill hill-2"></div>
+      </div>
+      <div class="bike">
+        <img src="assets/images/BikeImagePetit.png" alt="Vélo" />
+      </div>
+    </div>
     <div class="container">
       <h1>Brugier Jacob <span>Portfolio</span></h1>
       <nav>
@@ -21,66 +31,72 @@
       </nav>
     </div>
   </header>
+
   <main>
     <!-- HERO -->
     <section id="hero">
       <div class="hero-container">
         <div class="hero-video">
-          <video src="assets/videos/GlobalVideo.mp4?t=1" muted loop playsinline class="preview" controls></video>
+          <video src="assets/videos/GlobalVideo.mp4" autoplay muted loop playsinline class="preview"></video>
           <div class="video-gradient"></div>
         </div>
         <div class="hero-text">
           <h1>Jacob Brugier</h1>
-          <p>Étudiant en Game Design & Programming, 2ème année à Isart Digital Paris</p>
+          <p>- Étudiant en Game Design & Programming, 2ème année à Isart Digital Paris
+            <br>- Programmation Godot & Unity C#
+          </p>
         </div>
       </div>
     </section>
+
     <!-- PROJETS -->
     <section id="projects">
       <h2>Mes projets</h2>
       <div class="projects-grid">
-        <div class="project-card" data-title="Sokoban" data-description="Jeu de Puzzle type Sokoban, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
+        <div class="project-card" data-title="Tokotem" data-description="Jeu de Puzzle type Sokoban, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
           <div class="project-media">
             <img src="assets/images/TokotemImagePreview.png" alt="Capture d'écran du jeu Sokoban" class="thumbnail" />
             <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop playsinline class="preview"></video>
           </div>
           <div class="project-info">
-            <h3>Sokoban</h3>
+            <h3>Tokotem</h3>
             <p>Jeu de Puzzle type Sokoban !</p>
           </div>
         </div>
-        <div class="project-card" data-title="Shoot Them Up" data-description="Le premier projet de la première année, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
+        <div class="project-card" data-title="Slime it" data-description="Le premier projet de la première année, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
           <div class="project-media">
             <img src="assets/images/ImageShmup.png" alt="Capture d'écran du jeu Shoot Them Up" class="thumbnail" />
-            <video src="assets/videos/VideoShmup.mp4?t=1" muted loop playsinline class="preview"></video>
+            <video src="assets/videos/VideoShmup.mp4" muted loop playsinline class="preview"></video>
           </div>
           <div class="project-info">
-            <h3>Shoot Them Up</h3>
-            <p>Le premier projet de la première année.</p>
+            <h3>Slime it</h3>
+            <p>Le premier projet de la première année, type shoot them up</p>
           </div>
         </div>
-        <div class="project-card" data-title="Projet Croix Rouge" data-description="Projet réalisé dans le cadre d'une game jam caritative pour la Croix Rouge. Développement en équipe sur 48h.">
+        <div class="project-card" data-title="The Last Haven" data-description="Projet réalisé dans le cadre d'une game jam caritative pour la Croix Rouge. Développement en équipe sur 48h.">
           <div class="project-media">
             <img src="assets/images/ImageTheLastHaven.png" alt="Capture d'écran du projet Croix Rouge" class="thumbnail" />
-            <video src="assets/videos/VideoTheLastHaven.mp4?t=1" muted loop playsinline class="preview"></video>
+            <video src="assets/videos/VideoTheLastHaven.mp4" muted loop playsinline class="preview"></video>
           </div>
           <div class="project-info">
-            <h3>Projet Croix Rouge</h3>
-            <p>Projet Game Jam caritative.</p>
+            <h3>The Last Haven</h3>
+            <p>Projet Game Jam caritative pour la croix rouge !</p>
           </div>
         </div>
-        <div class="project-card" data-title="One Button Game" data-description="Dernier projet de l'année avec contraintes : One Button Game et Serious Game. Développement en C# avec Unity.">
+        <div class="project-card" data-title="One Button Game" data-description="Dernier projet de l'année avec 2 contraintes : faire un One Button Game (ex: Flappy bird, Geometry dash) et en même temps un Serious Game.
+                    J'ai choisi de Game-ifier un de mes hobby favoris : Le Crochet">
           <div class="project-media">
             <img src="assets/images/ImageCrochit.png" alt="Capture d'écran du jeu One Button Game" class="thumbnail" />
             <video src="assets/videos/VideoOBG.mp4" muted loop playsinline class="preview"></video>
           </div>
           <div class="project-info">
-            <h3>One Button Game</h3>
-            <p>Projet de fin d'année.</p>
+            <h3>Croch'it</h3>
+            <p>One button game de la fin d'année</p>
           </div>
         </div>
       </div>
     </section>
+
     <!-- MODALE PROJET -->
     <div id="projectModal" class="modal" aria-hidden="true">
       <div class="modal-content">
@@ -95,6 +111,7 @@
       </div>
     </div>
   </main>
+
   <!-- FOOTER -->
   <footer id="contact">
     <p>📧 <a href="mailto:jacob.brugier@gmail.com">jacob.brugier@gmail.com</a></p>
