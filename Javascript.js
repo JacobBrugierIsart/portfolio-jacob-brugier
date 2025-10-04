@@ -1,60 +1,46 @@
-// ==============================
-// 🎮 Portfolio Interactions JS
-// ==============================
-
-// --- MODALE PROJETS ---
-const modal = document.getElementById("projectModal");
-const modalVideo = document.getElementById("modalVideo");
-const modalTitle = document.getElementById("modalTitle");
-const modalDescription = document.getElementById("modalDescription");
-const closeBtn = document.querySelector(".close");
-
-// Gérer l'ouverture du modal
-document.querySelectorAll(".project-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const video = card.querySelector("video").getAttribute("src");
-    const title = card.dataset.title;
-    const description = card.dataset.description;
-
-    modalVideo.src = video;
-    modalTitle.textContent = title;
-    modalDescription.textContent = description;
-
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden"; // Empêche le scroll en arrière-plan
-  });
-});
-
-// Gérer la fermeture du modal
-const closeModal = () => {
-  modal.setAttribute("aria-hidden", "true");
-  modalVideo.pause();
-  modalVideo.currentTime = 0;
-  document.body.style.overflow = "auto";
-};
-
-// Bouton X
-closeBtn.addEventListener("click", closeModal);
-
-// Clic en dehors du contenu
-modal.addEventListener("click", e => {
-  if (e.target === modal) closeModal();
-});
-
-// Touche ESC pour fermer
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
-    closeModal();
+document.addEventListener("DOMContentLoaded", () => {
+  // Forcer lecture vidéo (autoplay sécurité)
+  const hv = document.querySelector(".hero-video video");
+  if (hv) {
+    hv.muted = true;
+    hv.playsInline = true;
+    hv.loop = true;
+    const p = hv.play();
+    if (p && p.catch) p.catch(() => {});
   }
-});
 
-// --- HOVER VIDÉO OPTIMISÉ ---
-// Pause les vidéos hors focus pour éviter la consommation CPU
-document.querySelectorAll(".project-card").forEach(card => {
-  const previewVideo = card.querySelector("video");
-  card.addEventListener("mouseenter", () => previewVideo.play());
-  card.addEventListener("mouseleave", () => {
-    previewVideo.pause();
-    previewVideo.currentTime = 0;
+  // Gestion des modales de projet
+  const modal = document.getElementById("previewModal");
+  const modalVideo = modal.querySelector(".tv-screen video");
+  const modalTitle = modal.querySelector(".modal-text h2");
+  const modalDescription = modal.querySelector(".modal-text p");
+
+  document.querySelectorAll(".cartouche").forEach(card => {
+    card.addEventListener("click", () => {
+      const videoSrc = card.querySelector('video').src;
+      const title = card.querySelector('h3').textContent;
+      const description = card.getAttribute('data-description') || "Description indisponible";
+
+      modalVideo.src = videoSrc;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+
+      modalVideo.load();
+      modalVideo.muted = true;
+      modalVideo.playsInline = true;
+      modalVideo.loop = true;
+      modalVideo.play().catch(() => {});
+
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    });
+  });
+
+  modal.addEventListener("click", e => {
+    if (e.target.id === "previewModal") {
+      modalVideo.pause();
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
   });
 });

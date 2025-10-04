@@ -1,122 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio – Jacob Brugier</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="Javascript.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio – Jacob Brugier</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="bike-animation">
-      <div class="road"></div>
-      <div class="hills">
-        <div class="hill hill-1"></div>
-        <div class="hill hill-2"></div>
-      </div>
-      <div class="bike">
-        <img src="assets/images/BikeImagePetit.png" alt="Vélo" />
-      </div>
-    </div>
-    <div class="container">
-      <h1>Brugier Jacob <span>Portfolio</span></h1>
-      <nav>
-        <ul>
-          <li><a href="#hero">Accueil</a></li>
-          <li><a href="#projects">Projets</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <div class="snow-container" id="snow"></div>
 
-  <main>
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-container">
-        <div class="hero-video">
-          <video src="assets/videos/GlobalVideo.mp4" autoplay muted loop playsinline class="preview"></video>
-          <div class="video-gradient"></div>
+    <!-- 🏃‍♂️ Header -->
+    <header>
+        <div class="header-background"></div>
+        <div class="header-inner">
+            <div class="logo-window">
+                <img src="assets/CelesteImages/MountainLogo.png" alt="Logo Mountain" class="mountain-logo">
+                <h1>Brugier Jacob <span>Portfolio</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="hero-text">
-          <h1>Jacob Brugier</h1>
-          <p>- Étudiant en Game Design & Programming, 2ème année à Isart Digital Paris
-            <br>- Programmation Godot & Unity C#
-          </p>
-        </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- PROJETS -->
-    <section id="projects">
-      <h2>Mes projets</h2>
-      <div class="projects-grid">
-        <div class="project-card" data-title="Tokotem" data-description="Jeu de Puzzle type Sokoban, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
-          <div class="project-media">
-            <img src="assets/images/TokotemImagePreview.png" alt="Capture d'écran du jeu Sokoban" class="thumbnail" />
-            <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop playsinline class="preview"></video>
-          </div>
-          <div class="project-info">
-            <h3>Tokotem</h3>
-            <p>Jeu de Puzzle type Sokoban !</p>
-          </div>
-        </div>
-        <div class="project-card" data-title="Slime it" data-description="Le premier projet de la première année, réalisé en autonomie avec un thème imposé. Développement en C# avec Unity.">
-          <div class="project-media">
-            <img src="assets/images/ImageShmup.png" alt="Capture d'écran du jeu Shoot Them Up" class="thumbnail" />
-            <video src="assets/videos/VideoShmup.mp4" muted loop playsinline class="preview"></video>
-          </div>
-          <div class="project-info">
-            <h3>Slime it</h3>
-            <p>Le premier projet de la première année, type shoot them up</p>
-          </div>
-        </div>
-        <div class="project-card" data-title="The Last Haven" data-description="Projet réalisé dans le cadre d'une game jam caritative pour la Croix Rouge. Développement en équipe sur 48h.">
-          <div class="project-media">
-            <img src="assets/images/ImageTheLastHaven.png" alt="Capture d'écran du projet Croix Rouge" class="thumbnail" />
-            <video src="assets/videos/VideoTheLastHaven.mp4" muted loop playsinline class="preview"></video>
-          </div>
-          <div class="project-info">
-            <h3>The Last Haven</h3>
-            <p>Projet Game Jam caritative pour la croix rouge !</p>
-          </div>
-        </div>
-        <div class="project-card" data-title="One Button Game" data-description="Dernier projet de l'année avec 2 contraintes : faire un One Button Game (ex: Flappy bird, Geometry dash) et en même temps un Serious Game.
-                    J'ai choisi de Game-ifier un de mes hobby favoris : Le Crochet">
-          <div class="project-media">
-            <img src="assets/images/ImageCrochit.png" alt="Capture d'écran du jeu One Button Game" class="thumbnail" />
-            <video src="assets/videos/VideoOBG.mp4" muted loop playsinline class="preview"></video>
-          </div>
-          <div class="project-info">
-            <h3>Croch'it</h3>
-            <p>One button game de la fin d'année</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 📺 HERO -->
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-video-wrapper">
+  <div class="hero-frame"></div> <!-- 👈 le contour -->
+  <video src="assets/videos/GlobalVideo.mp4" autoplay muted loop></video>
+</div>
+            <aside class="hero-text">
+                <h2>Jacob Brugier</h2>
+                <p>Étudiant en Game Design & Programming — 2ème année à Isart Digital Paris. Je crée des petits jeux avec soin, UX et feeling au cœur du gameplay.</p>
+                <div class="skills-container">
+                    <div class="skill-box">
+                        <img src="assets/icons/unity-icon.png" alt="Unity" class="skill-icon">
+                        <span>Unity</span>
+                    </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/godot-icon.png" alt="Godot" class="skill-icon">
+                        <span>Godot</span>
+                    </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/csharp-icon.png" alt="C#" class="skill-icon">
+                        <span>C#</span>
+                    </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/english-icon.png" alt="English" class="skill-icon">
+                        <span>English</span>
+                    </div>
+                </div>
+            </aside>
+        </section>
 
-    <!-- MODALE PROJET -->
-    <div id="projectModal" class="modal" aria-hidden="true">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="modal-video">
-          <video id="modalVideo" autoplay muted loop playsinline></video>
-        </div>
-        <div class="modal-text">
-          <h2 id="modalTitle">Titre du projet</h2>
-          <p id="modalDescription">Description détaillée du projet...</p>
-        </div>
-      </div>
-    </div>
-  </main>
+        <!-- 📦 Projets -->
+        <section id="projects" class="projects">
+            <!-- Projet 1: Sokoban -->
+            <article class="cartouche" data-description="Sokoban est un jeu de puzzle classique revisité avec une mécanique de poussée de caisses et des niveaux conçus pour tester la logique du joueur. Développé en C# avec Unity, ce projet m'a permis d'approfondir mes compétences en design de niveaux et en gestion des collisions.">
+                <div class="cartouche-frame">
+                    <div class="cartouche-screen">
+                        <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
+                        <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop class="cartouche-preview-video"></video>
+                    </div>
+                    <div class="cartouche-title">Sokoban</div>
+                    <div class="cartouche-subtitle">Jeu de Puzzle — C#</div>
+                </div>
+            </article>
 
-  <!-- FOOTER -->
-  <footer id="contact">
-    <p>📧 <a href="mailto:jacob.brugier@gmail.com">jacob.brugier@gmail.com</a></p>
-    <p>🔗 <a href="https://www.linkedin.com/in/jacob-brugier-127240203/" target="_blank">LinkedIn</a></p>
-    <p>📄 <a href="CV.pdf" target="_blank">CV PDF</a></p>
-  </footer>
+            <!-- Projet 2: Shoot Them Up -->
+            <article class="cartouche" data-description="Shoot Them Up est un jeu arcade rapide où le joueur incarne un vaisseau spatial devant survivre à des vagues d'ennemis toujours plus intenses. Développé en C# avec Unity, ce projet met l'accent sur le feeling de contrôle et la satisfaction du 'high score'.">
+                <div class="cartouche-frame">
+                    <div class="cartouche-screen">
+                        <img src="assets/images/ImageShmup.png" alt="Shoot Them Up" class="cartouche-preview-img">
+                        <video src="assets/videos/VideoShmup.mp4" muted loop class="cartouche-preview-video"></video>
+                    </div>
+                    <div class="cartouche-title">Shoot Them Up</div>
+                    <div class="cartouche-subtitle">Gameplay arcade rapide</div>
+                </div>
+            </article>
+
+            <!-- Projet 3: Projet Croix Rouge -->
+            <article class="cartouche" data-description="The Last Haven est un jeu développé en 48h lors d'une game jam caritative pour la Croix Rouge. Notre équipe a créé une expérience narrative courte mais intense, où le joueur doit reconstruire un village tout en gérant des ressources limitées.">
+                <div class="cartouche-frame">
+                    <div class="cartouche-screen">
+                        <img src="assets/images/ImageTheLastHaven.png" alt="The Last Haven" class="cartouche-preview-img">
+                        <video src="assets/videos/VideoTheLastHaven.mp4" muted loop class="cartouche-preview-video"></video>
+                    </div>
+                    <div class="cartouche-title">Projet Croix Rouge</div>
+                    <div class="cartouche-subtitle">Game Jam — 48h</div>
+                </div>
+            </article>
+
+            <!-- Projet 4: One Button Game -->
+            <article class="cartouche" data-description="One Button Game est un projet de fin d'année avec une contrainte forte : tout le gameplay doit être contrôlable avec une seule touche. Ce projet a été l'occasion de travailler sur l'accessibilité et la simplicité des contrôles.">
+                <div class="cartouche-frame">
+                    <div class="cartouche-screen">
+                        <img src="assets/images/ImageCrochit.png" alt="One Button Game" class="cartouche-preview-img">
+                        <video src="assets/videos/VideoOBG.mp4" muted loop class="cartouche-preview-video"></video>
+                    </div>
+                    <div class="cartouche-title">One Button Game</div>
+                    <div class="cartouche-subtitle">Projet de fin d'année</div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- 📩 Footer -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="logo-window">
+                <img src="assets/CelesteImages/MountainLogo.png" alt="Logo Mountain" class="mountain-logo">
+                <h2>Jacob Brugier <span>Portfolio</span></h2>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:jacob.brugier@gmail.com">📧 Jacob.Brugier@gmail.com</a>
+                <a href="www.linkedin.com/in/jacob-brugier-127242203" target="_blank">🔗 LinkedIn</a>
+            </div>
+            <p style="opacity:0.8;margin-top:10px">© 2025 — Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowContainer = document.getElementById('snow');
+            const snowflakeCount = 50;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.top = `-${Math.random() * 100}px`;
+                snowflake.style.width = `${30 + Math.random() * 12}px`;
+                snowflake.style.height = snowflake.style.width;
+                snowflake.style.opacity = 0.65 + Math.random() * 0.5;
+                snowflake.style.animationDuration = `${10 + Math.random() * 20}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowContainer.appendChild(snowflake);
+            }
+
+            document.querySelectorAll('.cartouche').forEach(cartouche => {
+                const video = cartouche.querySelector('.cartouche-preview-video');
+                cartouche.addEventListener('mouseenter', () => {
+                    video.style.opacity = '1';
+                    video.play().catch(() => {});
+                });
+                cartouche.addEventListener('mouseleave', () => {
+                    video.style.opacity = '0';
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
