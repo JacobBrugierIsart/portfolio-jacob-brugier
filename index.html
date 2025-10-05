@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- ❄️ Neige -->
     <div class="snow-container" id="snow"></div>
 
-    <!-- 🏃‍♂️ Header -->
+    <!-- Header -->
     <header>
         <div class="header-background"></div>
         <div class="header-inner">
@@ -27,13 +28,13 @@
         </div>
     </header>
 
-    <!-- 📺 HERO -->
+    <!-- Hero -->
     <main>
         <section id="hero" class="hero">
             <div class="hero-video-wrapper">
-  <div class="hero-frame"></div> <!-- 👈 le contour -->
-  <video src="assets/videos/GlobalVideo.mp4" autoplay muted loop></video>
-</div>
+                <div class="hero-frame"></div>
+                <video src="assets/videos/GlobalVideo.mp4" autoplay muted loop></video>
+            </div>
             <aside class="hero-text">
                 <h2>Jacob Brugier</h2>
                 <p>Étudiant en Game Design & Programming — 2ème année à Isart Digital Paris. Je crée des petits jeux avec soin, UX et feeling au cœur du gameplay.</p>
@@ -58,10 +59,10 @@
             </aside>
         </section>
 
-        <!-- 📦 Projets -->
+        <!-- Projets -->
         <section id="projects" class="projects">
             <!-- Projet 1: Sokoban -->
-            <article class="cartouche" data-description="Sokoban est un jeu de puzzle classique revisité avec une mécanique de poussée de caisses et des niveaux conçus pour tester la logique du joueur. Développé en C# avec Unity, ce projet m'a permis d'approfondir mes compétences en design de niveaux et en gestion des collisions.">
+            <article class="cartouche" data-description="Sokoban">
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
@@ -73,7 +74,7 @@
             </article>
 
             <!-- Projet 2: Shoot Them Up -->
-            <article class="cartouche" data-description="Shoot Them Up est un jeu arcade rapide où le joueur incarne un vaisseau spatial devant survivre à des vagues d'ennemis toujours plus intenses. Développé en C# avec Unity, ce projet met l'accent sur le feeling de contrôle et la satisfaction du 'high score'.">
+            <article class="cartouche" data-description="Shoot Them Up ">
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageShmup.png" alt="Shoot Them Up" class="cartouche-preview-img">
@@ -85,7 +86,7 @@
             </article>
 
             <!-- Projet 3: Projet Croix Rouge -->
-            <article class="cartouche" data-description="The Last Haven est un jeu développé en 48h lors d'une game jam caritative pour la Croix Rouge. Notre équipe a créé une expérience narrative courte mais intense, où le joueur doit reconstruire un village tout en gérant des ressources limitées.">
+            <article class="cartouche" data-description="The Last Haven ">
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageTheLastHaven.png" alt="The Last Haven" class="cartouche-preview-img">
@@ -97,7 +98,7 @@
             </article>
 
             <!-- Projet 4: One Button Game -->
-            <article class="cartouche" data-description="One Button Game est un projet de fin d'année avec une contrainte forte : tout le gameplay doit être contrôlable avec une seule touche. Ce projet a été l'occasion de travailler sur l'accessibilité et la simplicité des contrôles.">
+            <article class="cartouche" data-description="One Button Game ">
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageCrochit.png" alt="One Button Game" class="cartouche-preview-img">
@@ -110,7 +111,7 @@
         </section>
     </main>
 
-    <!-- 📩 Footer -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-inner">
             <div class="logo-window">
@@ -119,42 +120,32 @@
             </div>
             <div class="footer-links">
                 <a href="mailto:jacob.brugier@gmail.com">📧 Jacob.Brugier@gmail.com</a>
-                <a href="www.linkedin.com/in/jacob-brugier-127242203" target="_blank">🔗 LinkedIn</a>
+                <a href="https://www.linkedin.com/in/jacob-brugier-127242203" target="_blank">🔗 LinkedIn</a>
             </div>
             <p style="opacity:0.8;margin-top:10px">© 2025 — Portfolio</p>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const snowContainer = document.getElementById('snow');
-            const snowflakeCount = 50;
-            for (let i = 0; i < snowflakeCount; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.style.left = `${Math.random() * 100}%`;
-                snowflake.style.top = `-${Math.random() * 100}px`;
-                snowflake.style.width = `${30 + Math.random() * 12}px`;
-                snowflake.style.height = snowflake.style.width;
-                snowflake.style.opacity = 0.65 + Math.random() * 0.5;
-                snowflake.style.animationDuration = `${10 + Math.random() * 20}s`;
-                snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                snowContainer.appendChild(snowflake);
-            }
+    <!-- Modale -->
+    <div id="previewModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <!-- Ajout d'un bouton de fermeture (seule modification HTML nécessaire) -->
+            <button class="modal-close" aria-label="Fermer la modale">✖</button>
 
-            document.querySelectorAll('.cartouche').forEach(cartouche => {
-                const video = cartouche.querySelector('.cartouche-preview-video');
-                cartouche.addEventListener('mouseenter', () => {
-                    video.style.opacity = '1';
-                    video.play().catch(() => {});
-                });
-                cartouche.addEventListener('mouseleave', () => {
-                    video.style.opacity = '0';
-                    video.pause();
-                    video.currentTime = 0;
-                });
-            });
-        });
-    </script>
+            <div class="tv-frame">
+                <div class="tv-screen">
+                    <video autoplay muted loop></video>
+                </div>
+                <div class="tv-controls"></div>
+            </div>
+            <div class="modal-text">
+                <h2>Titre du projet</h2>
+                <p>Description du projet...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JS -->
+    <script src="Javascript.js"></script>
 </body>
 </html>

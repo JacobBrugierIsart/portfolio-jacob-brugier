@@ -1,4 +1,4 @@
-/* ====== Reset & Base ====== */
+/* ===== Reset & Base ===== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -482,3 +482,18 @@ main {
         flex: 0 0 100%;
     }
 }
+
+/* ====== Bouton fermeture modale (ajout minimal) ====== */
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #cfeff8;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 20;
+    padding: 6px;
+}
+.modal-close:hover { transform: scale(1.08); }
