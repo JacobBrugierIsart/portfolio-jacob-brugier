@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portfolio – Jacob Brugier</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/CelesteImages/MountainLogoSquare.png" />
+    <link rel="apple-touch-icon" href="assets/CelesteImages/MountainLogo.png" />
 </head>
 <body>
-    <!-- ❄️ Neige -->
+    <!-- Neige -->
     <div class="snow-container" id="snow"></div>
-
     <!-- Header -->
     <header>
         <div class="header-background"></div>
@@ -27,7 +29,6 @@
             </nav>
         </div>
     </header>
-
     <!-- Hero -->
     <main>
         <section id="hero" class="hero">
@@ -37,7 +38,7 @@
             </div>
             <aside class="hero-text">
                 <h2>Jacob Brugier</h2>
-                <p>Étudiant en Game Design & Programming — 2ème année à Isart Digital Paris. Je crée des petits jeux avec soin, UX et feeling au cœur du gameplay.</p>
+                <p>Étudiant 2ème année en Game Design & Programming à Isart Digital Paris. </p>
                 <div class="skills-container">
                     <div class="skill-box">
                         <img src="assets/icons/unity-icon.png" alt="Unity" class="skill-icon">
@@ -55,26 +56,40 @@
                         <img src="assets/icons/english-icon.png" alt="English" class="skill-icon">
                         <span>English</span>
                     </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/html-icon.png" alt="HTML" class="skill-icon">
+                        <span>Bases de HTML</span>
+                    </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/blender-icon.png" alt="Blender" class="skill-icon">
+                        <span>Blender</span>
+                    </div>
+                    <div class="skill-box">
+                        <img src="assets/icons/git-icon.png" alt="Git" class="skill-icon">
+                        <span>Git</span>
+                    </div>
                 </div>
             </aside>
         </section>
-
         <!-- Projets -->
         <section id="projects" class="projects">
-            <!-- Projet 1: Sokoban -->
-            <article class="cartouche" data-description="Sokoban">
+            <!-- Projet 1 -->
+            <article class="cartouche" 
+            data-description="Premier projet en équipe en utilisant Git"
+            data-skills='["Godot", "C#", "Blender", "English", "Git"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
                         <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop class="cartouche-preview-video"></video>
                     </div>
                     <div class="cartouche-title">Sokoban</div>
-                    <div class="cartouche-subtitle">Jeu de Puzzle — C#</div>
+                    <div class="cartouche-subtitle">Jeu de Puzzle</div>
                 </div>
             </article>
-
-            <!-- Projet 2: Shoot Them Up -->
-            <article class="cartouche" data-description="Shoot Them Up ">
+            <!-- Projet 2 -->
+            <article class="cartouche" 
+            data-description="Shoot Them Up" 
+            data-skills='["Godot", "C#"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageShmup.png" alt="Shoot Them Up" class="cartouche-preview-img">
@@ -84,9 +99,10 @@
                     <div class="cartouche-subtitle">Gameplay arcade rapide</div>
                 </div>
             </article>
-
-            <!-- Projet 3: Projet Croix Rouge -->
-            <article class="cartouche" data-description="The Last Haven ">
+            <!-- Projet 3 -->
+            <article class="cartouche" 
+            data-description="The Last Haven" 
+            data-skills='["Unity", "C#", "Game Jam"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageTheLastHaven.png" alt="The Last Haven" class="cartouche-preview-img">
@@ -96,9 +112,10 @@
                     <div class="cartouche-subtitle">Game Jam — 48h</div>
                 </div>
             </article>
-
-            <!-- Projet 4: One Button Game -->
-            <article class="cartouche" data-description="One Button Game ">
+            <!-- Projet 4 -->
+            <article class="cartouche" 
+            data-description="One Button Game" 
+            data-skills='["Godot", "C#"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/ImageCrochit.png" alt="One Button Game" class="cartouche-preview-img">
@@ -110,7 +127,6 @@
             </article>
         </section>
     </main>
-
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-inner">
@@ -119,24 +135,31 @@
                 <h2>Jacob Brugier <span>Portfolio</span></h2>
             </div>
             <div class="footer-links">
-                <a href="mailto:jacob.brugier@gmail.com">📧 Jacob.Brugier@gmail.com</a>
-                <a href="https://www.linkedin.com/in/jacob-brugier-127242203" target="_blank">🔗 LinkedIn</a>
+                <a href="mailto:jacob.brugier@gmail.com" class="footer-link">
+                    <img src="assets/icons/email-icon.png" alt="Email" class="footer-icon"> Jacob.Brugier@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/jacob-brugier-127242203" target="_blank" class="footer-link">
+                    <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" class="footer-icon"> LinkedIn
+                </a>
             </div>
             <p style="opacity:0.8;margin-top:10px">© 2025 — Portfolio</p>
         </div>
     </footer>
-
     <!-- Modale -->
     <div id="previewModal" class="modal" aria-hidden="true">
         <div class="modal-content">
-            <!-- Ajout d'un bouton de fermeture (seule modification HTML nécessaire) -->
             <button class="modal-close" aria-label="Fermer la modale">✖</button>
-
-            <div class="tv-frame">
-                <div class="tv-screen">
-                    <video autoplay muted loop></video>
+            <div class="modal-left">
+                <div class="tv-frame">
+                    <div class="tv-screen">
+                        <video autoplay muted loop></video>
+                    </div>
+                    <div class="tv-controls"></div>
                 </div>
-                <div class="tv-controls"></div>
+                <div class="modal-skills">
+                    <h3>Compétences utilisées</h3>
+                    <div class="skills-container"></div>
+                </div>
             </div>
             <div class="modal-text">
                 <h2>Titre du projet</h2>
@@ -144,7 +167,21 @@
             </div>
         </div>
     </div>
-
+    <!-- Oiseau avec bulle de texte -->
+    <div class="bird-bubble-container">
+        <div class="bird-bubble">
+            <img src="assets/CelesteImages/CelesteBirdResize.png" alt="Oiseau mascotte" class="bird-character">
+            <div class="bubble-text">
+                <div>Recherche Stage !</div>
+                <div><br>- Mai-Août 2026</div>
+                <div><br>- 1 à 4 mois</div>
+                <div><br>- Temps Plein</div>
+                <div><br>- Game Programming</div>
+                <div><br>- Game Design</div>
+                <div style="color: red;"><br>- Motivé !</div>
+            </div>
+        </div>
+    </div>
     <!-- Script JS -->
     <script src="Javascript.js"></script>
 </body>
