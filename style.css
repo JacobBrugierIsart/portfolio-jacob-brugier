@@ -261,7 +261,7 @@ main {
 }
 .cartouche-preview-img {
     position: relative;
-    width: 74%;
+    width: 78%;
     height: 100%;
     object-fit: cover;
     z-index: -2;
@@ -352,17 +352,17 @@ main {
 }
 .modal-skills {
     flex: 0 0 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 .modal-skills h3 {
     color: #9be7ff;
-    font-size: 18px;
+    font-size: 25px;
     margin-bottom: 12px;
-    text-align: center;
+    text-align: left;
 }
 .modal-text {
     flex: 1;
-    padding: 20px;
+    padding: 1px;
     overflow-y: auto;
     max-height: 500px;
 }
@@ -472,3 +472,34 @@ main {
     width: 20px;
     height: 20px;
 }
+
+.modal-text h3 {
+    color: #9be7ff;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tasks-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.tasks-list li {
+    color: #cfeff8;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.tasks-list li::before {
+    content: "•";
+    color: #9be7ff;
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+}
+

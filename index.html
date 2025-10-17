@@ -58,7 +58,7 @@
                     </div>
                     <div class="skill-box">
                         <img src="assets/icons/html-icon.png" alt="HTML" class="skill-icon">
-                        <span>Bases de HTML</span>
+                        <span>HTML</span>
                     </div>
                     <div class="skill-box">
                         <img src="assets/icons/blender-icon.png" alt="Blender" class="skill-icon">
@@ -78,9 +78,15 @@
             data-title="Tokotem"
             data-description="Premier projet en équipe en utilisant Git. La consigne imposait un jeu en 2D et une caractéristique spéciale à trouver. 
             Nous nous sommes dit que nous allions créer l'illusion de la 3D en permettant au joueur de grimper ! 
-            Apportant énormément de possibilités de game design. 
-            Sur ce projet mes tâches principales étaient le système de retour en arrière/avant, le menu paramètres avec un mode daltonnien, le système de login avec mot de passe crypté, certains assets et bien d'autres !"
-            data-skills='["Godot", "Csharp", "Blender", "English", "Git"]'>
+            Apportant énormément de possibilités de game design. "
+            data-tasks='[
+                "Système de retour en arrière/avant",
+                "Menu paramètres avec un mode daltonien",
+                "Système de Register/Login avec mot de passe crypté",
+                "Création d&#39;assets 3D sur Blender",
+                "Bien d&#39;autres tâches !"
+                ]'  
+                data-skills='["Godot", "Csharp", "Blender", "English", "Git"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
                         <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
@@ -94,7 +100,7 @@
             <article class="cartouche"
             data-title="Slime it" 
             data-description="Le shoot them up était le premier projet de l'année et donc mon premier vrai jeu sur le moteur Godot. 
-            En collaboration avec un Music/Sound artist un des vrai challenge de ce projet était de coordonner le combat de boss de fin avec la musique du jeu, donc de longues heures passées sur Audacity à arranger les pistes audio." 
+            En collaboration avec un Music/Sound artist un des vrai challenge de ce projet était de coordonner le combat de boss de fin avec la musique du jeu, donc de longues heures passées sur Audacity à arranger les pistes audio."
             data-skills='["Godot", "Csharp"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
@@ -108,8 +114,12 @@
             <!-- Projet 3 -->
             <article class="cartouche" 
             data-title="The Last Haven"
-            data-description="Projet réalisé à l'occasion du Hackaton citoyen organisé par Isart Digital, un événement en collaboration avec différentes associations (la Croix Rouge dans notre cas).
+            data-description="Projet en groupe réalisé à l'occasion du Hackaton citoyen organisé par Isart Digital, un événement en collaboration avec différentes associations (la Croix Rouge dans notre cas).
             Notre objectif : transformer leur exposition sur les réfugiés climatiques de demain en une expérience interactive"
+            data-tasks='[
+            "Ecriture de l&#39;histoire et des dialogues",
+            "Système de dialogue/choix"
+            ]'
             data-skills='["Unity", "Csharp", "Game Jam"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
@@ -124,7 +134,8 @@
             <article class="cartouche" 
             data-title="Croch'it"
             data-description="La consigne pour ce jeu fut la plus restrictive de toutes : faire un jeu mobile, One Button Game (du style flappy bird ou geometry dash) et de type Serious game.
-            La réfléxion pour trouver une idée de jeu fut dure mais je me suis finalement décidé à le faire autour d'une de mes passions : le crochet !" 
+            La réfléxion pour trouver une idée de jeu fut dure mais je me suis finalement décidé à le faire autour d'une de mes passions : le crochet ! 
+            Construire des formes, même avec une impression de 3D, avec seulement l'impulsion d'un doigt sur un écran de téléphone est possible !"
             data-skills='["Godot", "Csharp"]'>
                 <div class="cartouche-frame">
                     <div class="cartouche-screen">
@@ -167,14 +178,18 @@
                     <div class="tv-controls"></div>
                 </div>
                 <div class="modal-skills">
-                    <h3>Compétences utilisées</h3>
+                    <h3>Compétences utilisées :</h3>
                     <div class="skills-container"></div>
                 </div>
             </div>
             <div class="modal-text">
-                <h2>Titre du projet</h2>
-                <p>Description du projet...</p>
-            </div>
+    <h2>Titre du projet</h2>
+    <p>Description du projet...</p>
+    <h3>Mes tâches principales :</h3>
+    <ul class="tasks-list">
+        <!-- Les tâches seront ajoutées dynamiquement -->
+    </ul>
+</div>
         </div>
     </div>
     <!-- Oiseau avec bulle de texte -->

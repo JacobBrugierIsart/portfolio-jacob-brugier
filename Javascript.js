@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalSkillsContainer = modal.querySelector('.modal-skills .skills-container');
     const modalCloseBtn = modal.querySelector('.modal-close');
 
-    // Ouvrir la modale quand on clique sur une cartouche
 document.querySelectorAll('.cartouche').forEach(card => {
     card.addEventListener('click', () => {
         const previewVideo = card.querySelector('.cartouche-preview-video');
@@ -50,6 +49,14 @@ document.querySelectorAll('.cartouche').forEach(card => {
         const title = card.getAttribute('data-title') || "Titre inconnu";
         const description = card.getAttribute('data-description') || "Description indisponible";
         const skills = JSON.parse(card.getAttribute('data-skills') || '[]');
+        const tasks = card.hasAttribute('data-tasks') ? JSON.parse(card.getAttribute('data-tasks')) : null;
+
+        const modalVideo = modal.querySelector('.tv-screen video');
+        const modalTitle = modal.querySelector('.modal-text h2');
+        const modalDescription = modal.querySelector('.modal-text p');
+        const modalTasksTitle = modal.querySelector('.modal-text h3');
+        const modalTasksList = modal.querySelector('.modal-text .tasks-list');
+        const modalSkillsContainer = modal.querySelector('.modal-skills .skills-container');
 
         if (!modalVideo) return;
         modalVideo.pause();
@@ -69,14 +76,34 @@ document.querySelectorAll('.cartouche').forEach(card => {
         if (modalTitle) modalTitle.textContent = title;
         if (modalDescription) modalDescription.textContent = description;
 
+        // Afficher les tâches uniquement si elles existent
+        if (modalTasksTitle && modalTasksList) {
+            if (tasks && tasks.length > 0) {
+                modalTasksTitle.style.display = 'block';
+                modalTasksList.innerHTML = '';
+                tasks.forEach(task => {
+                    const taskItem = document.createElement('li');
+                    taskItem.textContent = task;
+                    modalTasksList.appendChild(taskItem);
+                });
+            } else {
+                modalTasksTitle.style.display = 'none';
+                modalTasksList.innerHTML = '';
+            }
+        }
+
         // Afficher les compétences
         if (modalSkillsContainer) {
             modalSkillsContainer.innerHTML = '';
             skills.forEach(skill => {
+                let iconName = skill.toLowerCase().replace(' ', '-');
+                if (skill === "C#") {
+                    iconName = "csharp";
+                }
                 const skillBox = document.createElement('div');
                 skillBox.className = 'skill-box';
                 skillBox.innerHTML = `
-                    <img src="assets/icons/${skill.toLowerCase().replace(' ', '-')}-icon.png" alt="${skill}" class="skill-icon">
+                    <img src="assets/icons/${iconName}-icon.png" alt="${skill}" class="skill-icon">
                     <span>${skill}</span>
                 `;
                 modalSkillsContainer.appendChild(skillBox);
@@ -88,6 +115,8 @@ document.querySelectorAll('.cartouche').forEach(card => {
         if (modalCloseBtn) modalCloseBtn.focus();
     });
 });
+
+
 
     /* Fermer modale */
     modal.addEventListener('click', e => {
