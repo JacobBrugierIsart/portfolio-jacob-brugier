@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portfolio – Jacob Brugier</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/CelesteImages/MountainLogoSquare.png" />
     <link rel="apple-touch-icon" href="assets/CelesteImages/MountainLogo.png" />
 </head>
 <body>
-    <!-- Neige -->
     <div class="snow-container" id="snow"></div>
-    <!-- Header -->
+
     <header>
         <div class="header-background"></div>
         <div class="header-inner">
@@ -29,7 +27,7 @@
             </nav>
         </div>
     </header>
-    <!-- Hero -->
+
     <main>
         <section id="hero" class="hero">
             <div class="hero-video-wrapper">
@@ -38,7 +36,7 @@
             </div>
             <aside class="hero-text">
                 <h2>Jacob Brugier</h2>
-                <p>Étudiant 2ème année en Game Design & Programming à Isart Digital Paris. </p>
+                <p>Je suis gameplay programmer et actuellement étudiant 2ème année en Game Design & Programming à Isart Digital Paris. </p>
                 <div class="skills-container">
                     <div class="skill-box">
                         <img src="assets/icons/unity-icon.png" alt="Unity" class="skill-icon">
@@ -71,84 +69,160 @@
                 </div>
             </aside>
         </section>
-        <!-- Projets -->
+
+        <!-- NOUVELLE SECTION DE FILTRAGE -->
+        <section class="filter-section">
+            <div class="filter-label">Trier par :</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+                <button class="filter-btn" data-filter="Godot">
+                    <img src="assets/icons/godot-icon.png" alt="Godot" class="filter-icon">
+                    <span>Godot</span>
+                </button>
+                <button class="filter-btn" data-filter="Unity">
+                    <img src="assets/icons/unity-icon.png" alt="Unity" class="filter-icon">
+                    <span>Unity</span>
+                </button>
+                <button class="filter-btn" data-filter="SoloProject">
+                    Solo Project
+                </button>
+                <button class="filter-btn" data-filter="GroupProject">
+                    Group Project
+                </button>
+                <button class="filter-btn" data-filter="Blender">
+                    <img src="assets/icons/blender-icon.png" alt="Blender" class="filter-icon">
+                    <span>Blender</span>
+                </button>
+            </div>
+        </section>
+
         <section id="projects" class="projects">
-            <!-- Projet 1 -->
             <article class="cartouche" 
-            data-title="Tokotem"
-            data-description="Premier projet en équipe en utilisant Git. La consigne imposait un jeu en 2D et une caractéristique spéciale à trouver. 
-            Nous nous sommes dit que nous allions créer l'illusion de la 3D en permettant au joueur de grimper ! 
-            Apportant énormément de possibilités de game design. "
-            data-tasks='[
-                "Système de retour en arrière/avant",
-                "Menu paramètres avec un mode daltonien",
-                "Système de Register/Login avec mot de passe crypté",
-                "Création d&#39;assets 3D sur Blender",
-                "Bien d&#39;autres tâches !"
-                ]'  
-                data-skills='["Godot", "Csharp", "Blender", "English", "Git"]'>
-                <div class="cartouche-frame">
-                    <div class="cartouche-screen">
-                        <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
-                        <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop class="cartouche-preview-video"></video>
+                data-title="Tokotem" 
+                data-description="Premier projet en équipe en utilisant Git. La consigne imposait un jeu en 2D et une caractéristique spéciale à trouver."
+                data-tasks='[ "Système de retour en arrière/avant", "Menu paramètres avec un mode daltonien", "Système de connexion / création de compte avec mot de passe crypté", "Création de models 3D sur Blender", "Localisation (Traduction) Français/Anglais", "Bien d&#39;autres tâches !" ]'
+                data-skills='["Godot", "Csharp", "Blender", "English", "Git"]'
+                data-photos='["assets/images/PopupToko1.png", "assets/images/PopupToko2.png", "assets/images/PopupToko3.png", "assets/images/PopupToko4.png"]'
+                data-tags="Godot,GroupProject,Blender">
+                <div class="cartouche-inner">
+                    <div class="cartouche-front">
+                        <div class="cartouche-frame">
+                            <div class="cartouche-screen">
+                                <img src="assets/images/TokotemImagePreview.png" alt="Sokoban" class="cartouche-preview-img">
+                            </div>
+                            <div class="cartouche-title">Sokoban</div>
+                            <div class="cartouche-subtitle">Jeu de Puzzle</div>
+                        </div>
                     </div>
-                    <div class="cartouche-title">Sokoban</div>
-                    <div class="cartouche-subtitle">Jeu de Puzzle</div>
+                    <div class="cartouche-back">
+                        <div class="cartouche-frame back-frame">
+                            <div class="cartouche-screen back-screen">
+                                <video src="assets/videos/Sokobanfinaledited(1).mp4" muted loop class="cartouche-preview-video"></video>
+                            </div>
+                            <div class="back-content">
+                                <h4 class="back-title">Description du projet</h4>
+                                <p class="back-description">Nous nous sommes dit que nous allions créer l'illusion de la 3D en permettant au joueur de grimper !</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
-            <!-- Projet 2 -->
-            <article class="cartouche"
-            data-title="Slime it" 
-            data-description="Le shoot them up était le premier projet de l'année et donc mon premier vrai jeu sur le moteur Godot. 
-            En collaboration avec un Music/Sound artist un des vrai challenge de ce projet était de coordonner le combat de boss de fin avec la musique du jeu, donc de longues heures passées sur Audacity à arranger les pistes audio."
-            data-skills='["Godot", "Csharp"]'>
-                <div class="cartouche-frame">
-                    <div class="cartouche-screen">
-                        <img src="assets/images/ImageShmup.png" alt="Shoot Them Up" class="cartouche-preview-img">
-                        <video src="assets/videos/VideoShmup.mp4" muted loop class="cartouche-preview-video"></video>
+
+            <article class="cartouche" 
+                data-title="Slime it" 
+                data-description="Le shoot them up était le premier projet de l'année et donc mon premier vrai jeu sur le moteur Godot. En collaboration avec un Music/Sound artist un des vrai challenge de ce projet était de coordonner le combat de boss de fin avec la musique du jeu."
+                data-skills='["Godot", "Csharp"]'
+                data-photos='[]'
+                data-tags="Godot,SoloProject">
+                <div class="cartouche-inner">
+                    <div class="cartouche-front">
+                        <div class="cartouche-frame">
+                            <div class="cartouche-screen">
+                                <img src="assets/images/ImageShmup.png" alt="Shoot Them Up" class="cartouche-preview-img">
+                            </div>
+                            <div class="cartouche-title">Shoot Them Up</div>
+                            <div class="cartouche-subtitle">Gameplay arcade rapide</div>
+                        </div>
                     </div>
-                    <div class="cartouche-title">Shoot Them Up</div>
-                    <div class="cartouche-subtitle">Gameplay arcade rapide</div>
+                    <div class="cartouche-back">
+                        <div class="cartouche-frame back-frame">
+                            <div class="cartouche-screen back-screen">
+                                <video src="assets/videos/VideoShmup.mp4" muted loop class="cartouche-preview-video"></video>
+                            </div>
+                            <div class="back-content">
+                                <h4 class="back-title">Description du projet</h4>
+                                <p class="back-description"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
-            <!-- Projet 3 -->
+
             <article class="cartouche" 
-            data-title="The Last Haven"
-            data-description="Projet en groupe réalisé à l'occasion du Hackaton citoyen organisé par Isart Digital, un événement en collaboration avec différentes associations (la Croix Rouge dans notre cas).
-            Notre objectif : transformer leur exposition sur les réfugiés climatiques de demain en une expérience interactive"
-            data-tasks='[
-            "Ecriture de l&#39;histoire et des dialogues",
-            "Système de dialogue/choix"
-            ]'
-            data-skills='["Unity", "Csharp", "Game Jam"]'>
-                <div class="cartouche-frame">
-                    <div class="cartouche-screen">
-                        <img src="assets/images/ImageTheLastHaven.png" alt="The Last Haven" class="cartouche-preview-img">
-                        <video src="assets/videos/VideoTheLastHaven.mp4" muted loop class="cartouche-preview-video"></video>
+                data-title="The Last Haven" 
+                data-description="Projet en groupe réalisé à l'occasion du Hackaton citoyen organisé par Isart Digital, un événement en collaboration avec différentes associations (la Croix Rouge dans notre cas). Notre objectif : transformer leur exposition sur les réfugiés climatiques de demain en une expérience interactive"
+                data-tasks='[ "Ecriture de l&#39;histoire et des dialogues", "Système de dialogue/choix" ]'
+                data-skills='["Unity", "Csharp"]'
+                data-photos='["assets/images/PopupTLH1.png", "assets/images/PopupTLH2.png", "assets/images/PopupTLH3.png", "assets/images/PopupTLH4.png"]'
+                data-tags="Unity,GroupProject">
+                <div class="cartouche-inner">
+                    <div class="cartouche-front">
+                        <div class="cartouche-frame">
+                            <div class="cartouche-screen">
+                                <img src="assets/images/ImageTheLastHaven.png" alt="The Last Haven" class="cartouche-preview-img">
+                            </div>
+                            <div class="cartouche-title">Projet Croix Rouge</div>
+                            <div class="cartouche-subtitle">Game Jam — 48h</div>
+                        </div>
                     </div>
-                    <div class="cartouche-title">Projet Croix Rouge</div>
-                    <div class="cartouche-subtitle">Game Jam — 48h</div>
+                    <div class="cartouche-back">
+                        <div class="cartouche-frame back-frame">
+                            <div class="cartouche-screen back-screen">
+                                <video src="assets/videos/VideoTheLastHaven.mp4" muted loop class="cartouche-preview-video"></video>
+                            </div>
+                            <div class="back-content">
+                                <h4 class="back-title">Description du projet</h4>
+                                <p class="back-description"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
-            <!-- Projet 4 -->
+
             <article class="cartouche" 
-            data-title="Croch'it"
-            data-description="La consigne pour ce jeu fut la plus restrictive de toutes : faire un jeu mobile, One Button Game (du style flappy bird ou geometry dash) et de type Serious game.
-            La réfléxion pour trouver une idée de jeu fut dure mais je me suis finalement décidé à le faire autour d'une de mes passions : le crochet ! 
-            Construire des formes, même avec une impression de 3D, avec seulement l'impulsion d'un doigt sur un écran de téléphone est possible !"
-            data-skills='["Godot", "Csharp"]'>
-                <div class="cartouche-frame">
-                    <div class="cartouche-screen">
-                        <img src="assets/images/ImageCrochit.png" alt="One Button Game" class="cartouche-preview-img">
-                        <video src="assets/videos/VideoOBG.mp4" muted loop class="cartouche-preview-video"></video>
+                data-title="Croch'it" 
+                data-description="La consigne pour ce jeu fut la plus restrictive de toutes : faire un jeu mobile, One Button Game (du style flappy bird ou geometry dash) et de type Serious game. La réfléxion pour trouver une idée de jeu fut dure mais je me suis finalement décidé à le faire autour d'une de mes passions : le crochet ! Construire des formes, même avec une impression de 3D, avec seulement l'impulsion d'un doigt sur un écran de téléphone est possible !"
+                data-skills='["Godot", "Csharp"]'
+                data-photos='[]'
+                data-tags="Godot,SoloProject">
+                <div class="cartouche-inner">
+                    <div class="cartouche-front">
+                        <div class="cartouche-frame">
+                            <div class="cartouche-screen">
+                                <img src="assets/images/ImageCrochit.png" alt="One Button Game" class="cartouche-preview-img">
+                            </div>
+                            <div class="cartouche-title">One Button Game</div>
+                            <div class="cartouche-subtitle">Serious game</div>
+                        </div>
                     </div>
-                    <div class="cartouche-title">One Button Game</div>
-                    <div class="cartouche-subtitle">Projet de fin d'année</div>
+                    <div class="cartouche-back">
+                        <div class="cartouche-frame back-frame">
+                            <div class="cartouche-screen back-screen">
+                                <video src="assets/videos/VideoOBG.mp4" muted loop class="cartouche-preview-video"></video>
+                            </div>
+                            <div class="back-content">
+                                <h4 class="back-title">Description du projet</h4>
+                                <p class="back-description"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
         </section>
     </main>
-    <!-- Footer -->
+
     <footer id="contact">
         <div class="footer-inner">
             <div class="logo-window">
@@ -157,16 +231,18 @@
             </div>
             <div class="footer-links">
                 <a href="mailto:jacob.brugier@gmail.com" class="footer-link">
-                    <img src="assets/icons/email-icon.png" alt="Email" class="footer-icon"> Jacob.Brugier@gmail.com
+                    <img src="assets/icons/email-icon.png" alt="Email" class="footer-icon">
+                    Jacob.Brugier@gmail.com
                 </a>
                 <a href="https://www.linkedin.com/in/jacob-brugier-127242203" target="_blank" class="footer-link">
-                    <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" class="footer-icon"> LinkedIn
+                    <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" class="footer-icon">
+                    LinkedIn
                 </a>
             </div>
             <p style="opacity:0.8;margin-top:10px">© 2025 — Portfolio</p>
         </div>
     </footer>
-    <!-- Modale -->
+
     <div id="previewModal" class="modal" aria-hidden="true">
         <div class="modal-content">
             <button class="modal-close" aria-label="Fermer la modale">✖</button>
@@ -183,16 +259,29 @@
                 </div>
             </div>
             <div class="modal-text">
-    <h2>Titre du projet</h2>
-    <p>Description du projet...</p>
-    <h3>Mes tâches principales :</h3>
-    <ul class="tasks-list">
-        <!-- Les tâches seront ajoutées dynamiquement -->
-    </ul>
-</div>
+                <h2>Titre du projet</h2>
+                <p>Description du projet...</p>
+                <h3>Mes tâches principales :</h3>
+                <ul class="tasks-list">
+                </ul>
+                <div class="modal-gallery-section">
+                    <h3>Galerie Photos :</h3>
+                    <div class="gallery-container">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Oiseau avec bulle de texte -->
+
+    <div id="imageModal" class="modal modal-photo" aria-hidden="true">
+        <div class="modal-content-photo">
+            <button class="modal-close-photo" aria-label="Fermer l'aperçu photo">✖</button>
+            <button class="nav-arrow left-arrow" aria-label="Image précédente">&#10094;</button>
+            <img src="" alt="Aperçu photo du projet" class="full-screen-image">
+            <button class="nav-arrow right-arrow" aria-label="Image suivante">&#10095;</button>
+        </div>
+    </div>
+
     <div class="bird-bubble-container">
         <div class="bird-bubble">
             <img src="assets/CelesteImages/CelesteBirdResize.png" alt="Oiseau mascotte" class="bird-character">
@@ -207,7 +296,7 @@
             </div>
         </div>
     </div>
-    <!-- Script JS -->
+
     <script src="Javascript.js"></script>
 </body>
 </html>

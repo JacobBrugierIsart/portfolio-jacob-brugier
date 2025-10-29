@@ -1,145 +1,239 @@
-document.addEventListener('DOMContentLoaded', function() {
-    /* ❄️ Création de la neige */
+// ====== Génération des flocons de neige ======
+function createSnowflakes() {
     const snowContainer = document.getElementById('snow');
-    const snowflakeCount = 80;
-    if (snowContainer) snowContainer.innerHTML = '';
-    for (let i = 0; i < snowflakeCount; i++) {
+    const numberOfSnowflakes = 150; // Augmenté pour plus de densité
+
+    for (let i = 0; i < numberOfSnowflakes; i++) {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
+        
+        const size = Math.random() * 70;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        
+        // Position initiale aléatoire sur toute la hauteur
         snowflake.style.left = `${Math.random() * 100}%`;
-        snowflake.style.top = `-${Math.random() * 100}px`;
-        snowflake.style.width = `${12 + Math.random() * 50}px`;
-        snowflake.style.height = snowflake.style.width;
-        snowflake.style.opacity = 0.5 + Math.random() * 0.5;
-        snowflake.style.animationDuration = `${10 + Math.random() * 15}s`;
-        snowflake.style.animationDelay = `${Math.random() * 5}s`;
-        if (snowContainer) snowContainer.appendChild(snowflake);
+        snowflake.style.top = `${Math.random() * 150 - 50}%`; // Position étendue au-dessus de l'écran
+        
+        // Durées réduites pour qu'ils tombent plus vite et reviennent plus rapidement
+        snowflake.style.animationDuration = `${Math.random() * 8 + 10}s`;
+        snowflake.style.animationDelay = `${Math.random() * 8}s`;
+        
+        snowContainer.appendChild(snowflake);
     }
+}
 
-    /* 🔄 Hover vidéo sur cartouches */
-    document.querySelectorAll('.cartouche').forEach(cartouche => {
-        const video = cartouche.querySelector('.cartouche-preview-video');
-        if (!video) return;
-        cartouche.addEventListener('mouseenter', () => {
-            video.style.opacity = '1';
-            video.muted = true;
-            video.playsInline = true;
-            video.play().catch(() => {});
-        });
-        cartouche.addEventListener('mouseleave', () => {
-            video.style.opacity = '0';
-            video.pause();
-            video.currentTime = 0;
-        });
-    });
+createSnowflakes();
 
-    /* 📺 Modale projet */
-    const modal = document.getElementById('previewModal');
-    if (!modal) return;
-    const modalVideo = modal.querySelector('.tv-screen video');
-    const modalTitle = modal.querySelector('.modal-text h2');
-    const modalDescription = modal.querySelector('.modal-text p');
-    const modalSkillsContainer = modal.querySelector('.modal-skills .skills-container');
-    const modalCloseBtn = modal.querySelector('.modal-close');
+// ====== Gestion des cartouches et de la modale ======
+const cartouches = document.querySelectorAll('.cartouche');
+const modal = document.getElementById('previewModal');
+const modalVideo = modal.querySelector('.tv-screen video');
+const modalTitle = modal.querySelector('.modal-text h2');
+const modalDescription = modal.querySelector('.modal-text p');
+const modalSkillsContainer = modal.querySelector('.modal-skills .skills-container');
+const modalTasksList = modal.querySelector('.tasks-list');
+const modalGalleryContainer = modal.querySelector('.gallery-container');
+const modalClose = modal.querySelector('.modal-close');
 
-document.querySelectorAll('.cartouche').forEach(card => {
-    card.addEventListener('click', () => {
-        const previewVideo = card.querySelector('.cartouche-preview-video');
-        const videoSrc = previewVideo ? previewVideo.getAttribute('src') : '';
-        const title = card.getAttribute('data-title') || "Titre inconnu";
-        const description = card.getAttribute('data-description') || "Description indisponible";
-        const skills = JSON.parse(card.getAttribute('data-skills') || '[]');
-        const tasks = card.hasAttribute('data-tasks') ? JSON.parse(card.getAttribute('data-tasks')) : null;
+// Modale photo plein écran
+const imageModal = document.getElementById('imageModal');
+const fullScreenImage = imageModal.querySelector('.full-screen-image');
+const imageModalClose = imageModal.querySelector('.modal-close-photo');
+const leftArrow = imageModal.querySelector('.left-arrow');
+const rightArrow = imageModal.querySelector('.right-arrow');
 
-        const modalVideo = modal.querySelector('.tv-screen video');
-        const modalTitle = modal.querySelector('.modal-text h2');
-        const modalDescription = modal.querySelector('.modal-text p');
-        const modalTasksTitle = modal.querySelector('.modal-text h3');
-        const modalTasksList = modal.querySelector('.modal-text .tasks-list');
-        const modalSkillsContainer = modal.querySelector('.modal-skills .skills-container');
+let currentGalleryPhotos = [];
+let currentPhotoIndex = 0;
 
-        if (!modalVideo) return;
-        modalVideo.pause();
-        modalVideo.removeAttribute('src');
-        modalVideo.load();
+// Icônes pour les compétences
+const skillIcons = {
+    'Godot': 'assets/icons/godot-icon.png',
+    'Unity': 'assets/icons/unity-icon.png',
+    'Csharp': 'assets/icons/csharp-icon.png',
+    'English': 'assets/icons/english-icon.png',
+    'HTML': 'assets/icons/html-icon.png',
+    'Blender': 'assets/icons/blender-icon.png',
+    'Git': 'assets/icons/git-icon.png'
+};
 
-        if (videoSrc) {
-            modalVideo.src = videoSrc;
-            modalVideo.muted = true;
-            modalVideo.playsInline = true;
-            modalVideo.loop = true;
-            modalVideo.load();
-            modalVideo.currentTime = 0;
-            modalVideo.play().catch(() => {});
-        }
+const skillLabels = {
+    'Csharp': 'C#',
+    'English': 'English',
+    'HTML': 'HTML',
+    'Godot': 'Godot',
+    'Unity': 'Unity',
+    'Blender': 'Blender',
+    'Git': 'Git'
+};
 
-        if (modalTitle) modalTitle.textContent = title;
-        if (modalDescription) modalDescription.textContent = description;
-
-        // Afficher les tâches uniquement si elles existent
-        if (modalTasksTitle && modalTasksList) {
-            if (tasks && tasks.length > 0) {
-                modalTasksTitle.style.display = 'block';
-                modalTasksList.innerHTML = '';
-                tasks.forEach(task => {
-                    const taskItem = document.createElement('li');
-                    taskItem.textContent = task;
-                    modalTasksList.appendChild(taskItem);
-                });
-            } else {
-                modalTasksTitle.style.display = 'none';
-                modalTasksList.innerHTML = '';
+cartouches.forEach(cartouche => {
+    cartouche.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const title = cartouche.dataset.title;
+        const description = cartouche.dataset.description;
+        const videoSrc = cartouche.querySelector('.cartouche-preview-video')?.src || '';
+        const skills = JSON.parse(cartouche.dataset.skills || '[]');
+        const tasks = JSON.parse(cartouche.dataset.tasks || '[]');
+        const photos = JSON.parse(cartouche.dataset.photos || '[]');
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalVideo.src = videoSrc;
+        modalVideo.play();
+        
+        // Remplir les compétences
+        modalSkillsContainer.innerHTML = '';
+        skills.forEach(skill => {
+            const skillBox = document.createElement('div');
+            skillBox.className = 'skill-box';
+            
+            const iconPath = skillIcons[skill];
+            if (iconPath) {
+                const icon = document.createElement('img');
+                icon.src = iconPath;
+                icon.alt = skill;
+                icon.className = 'skill-icon';
+                skillBox.appendChild(icon);
             }
-        }
-
-        // Afficher les compétences
-        if (modalSkillsContainer) {
-            modalSkillsContainer.innerHTML = '';
-            skills.forEach(skill => {
-                let iconName = skill.toLowerCase().replace(' ', '-');
-                if (skill === "C#") {
-                    iconName = "csharp";
-                }
-                const skillBox = document.createElement('div');
-                skillBox.className = 'skill-box';
-                skillBox.innerHTML = `
-                    <img src="assets/icons/${iconName}-icon.png" alt="${skill}" class="skill-icon">
-                    <span>${skill}</span>
-                `;
-                modalSkillsContainer.appendChild(skillBox);
+            
+            const label = document.createElement('span');
+            label.textContent = skillLabels[skill] || skill;
+            skillBox.appendChild(label);
+            
+            modalSkillsContainer.appendChild(skillBox);
+        });
+        
+        // Remplir les tâches
+        modalTasksList.innerHTML = '';
+        if (tasks.length > 0) {
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.textContent = task;
+                modalTasksList.appendChild(li);
             });
+            modal.querySelector('.modal-text h3').style.display = 'block';
+        } else {
+            modal.querySelector('.modal-text h3').style.display = 'none';
         }
-
+        
+        // Remplir la galerie photos
+        modalGalleryContainer.innerHTML = '';
+        currentGalleryPhotos = photos;
+        
+        if (photos.length > 0) {
+            modal.querySelector('.modal-gallery-section').style.display = 'block';
+            photos.forEach((photoSrc, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = photoSrc;
+                img.alt = `Photo ${index + 1} du projet`;
+                
+                galleryItem.appendChild(img);
+                galleryItem.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openImageModal(index);
+                });
+                
+                modalGalleryContainer.appendChild(galleryItem);
+            });
+        } else {
+            modal.querySelector('.modal-gallery-section').style.display = 'none';
+        }
+        
         modal.classList.add('show');
         modal.setAttribute('aria-hidden', 'false');
-        if (modalCloseBtn) modalCloseBtn.focus();
     });
 });
 
+// Fermeture de la modale principale
+modalClose.addEventListener('click', () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    modalVideo.pause();
+    modalVideo.src = '';
+});
 
-
-    /* Fermer modale */
-    modal.addEventListener('click', e => {
-        if (e.target.id === 'previewModal') closeModal();
-    });
-
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeModal);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
-    });
-
-    function closeModal() {
-        if (!modal) return;
-        if (modalVideo) {
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-            modalVideo.removeAttribute('src');
-            modalVideo.load();
-        }
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
         modal.classList.remove('show');
         modal.setAttribute('aria-hidden', 'true');
+        modalVideo.pause();
+        modalVideo.src = '';
     }
+});
+
+// Gestion de la modale photo plein écran
+function openImageModal(index) {
+    currentPhotoIndex = index;
+    updateFullScreenImage();
+    imageModal.classList.add('show');
+    imageModal.setAttribute('aria-hidden', 'false');
+}
+
+function updateFullScreenImage() {
+    if (currentGalleryPhotos.length > 0) {
+        fullScreenImage.src = currentGalleryPhotos[currentPhotoIndex];
+    }
+}
+
+imageModalClose.addEventListener('click', () => {
+    imageModal.classList.remove('show');
+    imageModal.setAttribute('aria-hidden', 'true');
+});
+
+imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal || e.target === imageModal.querySelector('.modal-content-photo')) {
+        imageModal.classList.remove('show');
+        imageModal.setAttribute('aria-hidden', 'true');
+    }
+});
+
+leftArrow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentGalleryPhotos.length) % currentGalleryPhotos.length;
+    updateFullScreenImage();
+});
+
+rightArrow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentGalleryPhotos.length;
+    updateFullScreenImage();
+});
+
+// ====== NOUVELLE LOGIQUE DE FILTRAGE ======
+const filterButtons = document.querySelectorAll('.filter-btn');
+const allCartouches = document.querySelectorAll('.cartouche');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Retirer la classe active de tous les boutons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Ajouter la classe active au bouton cliqué
+        button.classList.add('active');
+        
+        // Récupérer le filtre sélectionné
+        const filter = button.dataset.filter;
+        
+        // Filtrer les cartouches
+        allCartouches.forEach(cartouche => {
+            const tags = cartouche.dataset.tags || '';
+            
+            if (filter === 'all') {
+                // Afficher tous les projets
+                cartouche.classList.remove('hidden');
+            } else {
+                // Vérifier si le tag est présent dans la liste des tags du projet
+                if (tags.includes(filter)) {
+                    cartouche.classList.remove('hidden');
+                } else {
+                    cartouche.classList.add('hidden');
+                }
+            }
+        });
+    });
 });
