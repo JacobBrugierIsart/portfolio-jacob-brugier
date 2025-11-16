@@ -72,15 +72,36 @@ cartouches.forEach(cartouche => {
         
         const title = cartouche.dataset.title;
         const description = cartouche.dataset.description;
-        const videoSrc = cartouche.querySelector('.cartouche-preview-video')?.src || '';
+        
+        // 💡 CORRECTION 1 : Récupérer la source vidéo depuis data-videosrc.
+        // Assurez-vous d'avoir data-videosrc="chemin/vers/votre/video.mp4" dans votre HTML.
+        const videoSrc = cartouche.dataset.videosrc || ''; 
+        
+        // Ancienne ligne inutilisable si vous avez retiré la balise <video> :
+        // const videoSrc = cartouche.querySelector('.cartouche-preview-video')?.src || '';
+        
         const skills = JSON.parse(cartouche.dataset.skills || '[]');
         const tasks = JSON.parse(cartouche.dataset.tasks || '[]');
         const photos = JSON.parse(cartouche.dataset.photos || '[]');
         
         modalTitle.textContent = title;
         modalDescription.textContent = description;
+        
         modalVideo.src = videoSrc;
-        modalVideo.play();
+        
+        // 💡 CORRECTION 2 : Mettre la vidéo en sourdine pour contourner le blocage du navigateur.
+        modalVideo.muted = true;
+        
+        // S'assurer que le navigateur charge la nouvelle source (utile après changement de src).
+        modalVideo.load();
+
+        // 💡 CORRECTION 3 : Tenter la lecture et gérer l'erreur (pour le debug et la stabilité).
+        modalVideo.play().then(() => {
+            // Lecture réussie
+        }).catch(error => {
+            // Si le chemin est incorrect (404) ou le format non supporté, l'erreur apparaît ici.
+            console.error("Échec de la lecture de la vidéo. Vérifiez le chemin (data-videosrc) et la propriété 'muted'.", error);
+        });
         
         // Remplir les compétences
         modalSkillsContainer.innerHTML = '';
