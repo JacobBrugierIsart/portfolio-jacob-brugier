@@ -15,7 +15,6 @@ function createSnowflakes() {
         snowflake.style.left = `${Math.random() * 100}%`;
         snowflake.style.top = `${Math.random() * 150 - 50}%`; // Position étendue au-dessus de l'écran
         
-        // Durées réduites pour qu'ils tombent plus vite et reviennent plus rapidement
         snowflake.style.animationDuration = `${Math.random() * 8 + 10}s`;
         snowflake.style.animationDelay = `${Math.random() * 8}s`;
         

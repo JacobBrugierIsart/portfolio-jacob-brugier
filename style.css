@@ -270,11 +270,6 @@ main {
     transition: all 0.2s ease;
 }
 
-.skill-box:hover {
-    background: rgba(13, 21, 34, 0.9);
-    border-color: #9be7ff;
-    transform: translateY(-2px);
-}
 
 .skill-icon {
     width: 20px;
@@ -434,14 +429,16 @@ main {
 }
 
 .cartouche-back .cartouche-screen {
-    height: 142px;
-    width: 80%;
+    height: 60%;
+    width: 75%;
     margin: 20px auto 0 auto;
     z-index: -2;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
+    zoom: 30%;
+    top: 50px;
 }
 
 .cartouche-preview-img {
@@ -452,12 +449,16 @@ main {
     z-index: -2;
 }
 
-.cartouche-preview-video {
+.cartouche-back .cartouche-back-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 1;
-    transition: none;
+    
+    object-fit: contain; 
+
+    position: relative !important;
+    top: auto;
+    left: auto;
+    transform: none;
 }
 
 .back-content {
