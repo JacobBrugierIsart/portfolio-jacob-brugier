@@ -1,7 +1,6 @@
-// ====== Génération des flocons de neige ======
 function createSnowflakes() {
     const snowContainer = document.getElementById('snow');
-    const numberOfSnowflakes = 150; // Augmenté pour plus de densité
+    const numberOfSnowflakes = 150;
 
     for (let i = 0; i < numberOfSnowflakes; i++) {
         const snowflake = document.createElement('div');
@@ -11,9 +10,9 @@ function createSnowflakes() {
         snowflake.style.width = `${size}px`;
         snowflake.style.height = `${size}px`;
         
-        // Position initiale aléatoire sur toute la hauteur
+
         snowflake.style.left = `${Math.random() * 100}%`;
-        snowflake.style.top = `${Math.random() * 150 - 50}%`; // Position étendue au-dessus de l'écran
+        snowflake.style.top = `${Math.random() * 150 - 50}%`; 
         
         snowflake.style.animationDuration = `${Math.random() * 8 + 10}s`;
         snowflake.style.animationDelay = `${Math.random() * 8}s`;
@@ -24,7 +23,7 @@ function createSnowflakes() {
 
 createSnowflakes();
 
-// ====== Gestion des cartouches et de la modale ======
+
 const cartouches = document.querySelectorAll('.cartouche');
 const modal = document.getElementById('previewModal');
 const modalVideo = modal.querySelector('.tv-screen video');
@@ -35,7 +34,7 @@ const modalTasksList = modal.querySelector('.tasks-list');
 const modalGalleryContainer = modal.querySelector('.gallery-container');
 const modalClose = modal.querySelector('.modal-close');
 
-// Modale photo plein écran
+
 const imageModal = document.getElementById('imageModal');
 const fullScreenImage = imageModal.querySelector('.full-screen-image');
 const imageModalClose = imageModal.querySelector('.modal-close-photo');
@@ -45,7 +44,7 @@ const rightArrow = imageModal.querySelector('.right-arrow');
 let currentGalleryPhotos = [];
 let currentPhotoIndex = 0;
 
-// Icônes pour les compétences
+
 const skillIcons = {
     'Godot': 'assets/icons/godot-icon.png',
     'Unity': 'assets/icons/unity-icon.png',
@@ -73,12 +72,8 @@ cartouches.forEach(cartouche => {
         const title = cartouche.dataset.title;
         const description = cartouche.dataset.description;
         
-        // 💡 CORRECTION 1 : Récupérer la source vidéo depuis data-videosrc.
-        // Assurez-vous d'avoir data-videosrc="chemin/vers/votre/video.mp4" dans votre HTML.
         const videoSrc = cartouche.dataset.videosrc || ''; 
         
-        // Ancienne ligne inutilisable si vous avez retiré la balise <video> :
-        // const videoSrc = cartouche.querySelector('.cartouche-preview-video')?.src || '';
         
         const skills = JSON.parse(cartouche.dataset.skills || '[]');
         const tasks = JSON.parse(cartouche.dataset.tasks || '[]');
@@ -89,21 +84,15 @@ cartouches.forEach(cartouche => {
         
         modalVideo.src = videoSrc;
         
-        // 💡 CORRECTION 2 : Mettre la vidéo en sourdine pour contourner le blocage du navigateur.
         modalVideo.muted = true;
         
-        // S'assurer que le navigateur charge la nouvelle source (utile après changement de src).
         modalVideo.load();
 
-        // 💡 CORRECTION 3 : Tenter la lecture et gérer l'erreur (pour le debug et la stabilité).
         modalVideo.play().then(() => {
-            // Lecture réussie
         }).catch(error => {
-            // Si le chemin est incorrect (404) ou le format non supporté, l'erreur apparaît ici.
             console.error("Échec de la lecture de la vidéo. Vérifiez le chemin (data-videosrc) et la propriété 'muted'.", error);
         });
         
-        // Remplir les compétences
         modalSkillsContainer.innerHTML = '';
         skills.forEach(skill => {
             const skillBox = document.createElement('div');
@@ -125,7 +114,6 @@ cartouches.forEach(cartouche => {
             modalSkillsContainer.appendChild(skillBox);
         });
         
-        // Remplir les tâches
         modalTasksList.innerHTML = '';
         if (tasks.length > 0) {
             tasks.forEach(task => {
@@ -138,7 +126,6 @@ cartouches.forEach(cartouche => {
             modal.querySelector('.modal-text h3').style.display = 'none';
         }
         
-        // Remplir la galerie photos
         modalGalleryContainer.innerHTML = '';
         currentGalleryPhotos = photos;
         
@@ -169,7 +156,6 @@ cartouches.forEach(cartouche => {
     });
 });
 
-// Fermeture de la modale principale
 modalClose.addEventListener('click', () => {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
@@ -186,7 +172,6 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-// Gestion de la modale photo plein écran
 function openImageModal(index) {
     currentPhotoIndex = index;
     updateFullScreenImage();
@@ -224,30 +209,29 @@ rightArrow.addEventListener('click', (e) => {
     updateFullScreenImage();
 });
 
-// ====== NOUVELLE LOGIQUE DE FILTRAGE ======
 const filterButtons = document.querySelectorAll('.filter-btn');
 const allCartouches = document.querySelectorAll('.cartouche');
 
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // Retirer la classe active de tous les boutons
+
         filterButtons.forEach(btn => btn.classList.remove('active'));
         
-        // Ajouter la classe active au bouton cliqué
+ 
         button.classList.add('active');
         
-        // Récupérer le filtre sélectionné
+ 
         const filter = button.dataset.filter;
         
-        // Filtrer les cartouches
+ 
         allCartouches.forEach(cartouche => {
             const tags = cartouche.dataset.tags || '';
             
             if (filter === 'all') {
-                // Afficher tous les projets
+ 
                 cartouche.classList.remove('hidden');
             } else {
-                // Vérifier si le tag est présent dans la liste des tags du projet
+ 
                 if (tags.includes(filter)) {
                     cartouche.classList.remove('hidden');
                 } else {
