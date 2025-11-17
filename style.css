@@ -749,6 +749,13 @@ main {
 
 .bird-bubble {
     pointer-events: auto;
+    position: absolute;
+}
+
+@media (max-width: 600px) {
+  .bird-bubble {
+    display: none !important; 
+  }
 }
 
 .bubble-text {
