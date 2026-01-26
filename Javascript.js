@@ -86,11 +86,14 @@ cartouches.forEach(cartouche => {
         
         modalVideo.muted = true;
         
+        // Petite sécurité pour éviter les erreurs sur mobile
+        modalVideo.playsInline = true; 
+        
         modalVideo.load();
 
         modalVideo.play().then(() => {
         }).catch(error => {
-            console.error("Échec de la lecture de la vidéo. Vérifiez le chemin (data-videosrc) et la propriété 'muted'.", error);
+            console.error("Échec de la lecture de la vidéo.", error);
         });
         
         modalSkillsContainer.innerHTML = '';
