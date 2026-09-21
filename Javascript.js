@@ -10,7 +10,6 @@ function createSnowflakes() {
         snowflake.style.width = `${size}px`;
         snowflake.style.height = `${size}px`;
         
-
         snowflake.style.left = `${Math.random() * 100}%`;
         snowflake.style.top = `${Math.random() * 150 - 50}%`; 
         
@@ -23,7 +22,6 @@ function createSnowflakes() {
 
 createSnowflakes();
 
-
 const cartouches = document.querySelectorAll('.cartouche');
 const modal = document.getElementById('previewModal');
 const modalVideo = modal.querySelector('.tv-screen video');
@@ -34,7 +32,6 @@ const modalTasksList = modal.querySelector('.tasks-list');
 const modalGalleryContainer = modal.querySelector('.gallery-container');
 const modalClose = modal.querySelector('.modal-close');
 
-
 const imageModal = document.getElementById('imageModal');
 const fullScreenImage = imageModal.querySelector('.full-screen-image');
 const imageModalClose = imageModal.querySelector('.modal-close-photo');
@@ -43,7 +40,6 @@ const rightArrow = imageModal.querySelector('.right-arrow');
 
 let currentGalleryPhotos = [];
 let currentPhotoIndex = 0;
-
 
 const skillIcons = {
     'Godot': 'assets/icons/godot-icon.png',
@@ -58,7 +54,6 @@ const skillIcons = {
 const skillLabels = {
     'Csharp': 'C#',
     'English': 'English',
-    'HTML': 'HTML',
     'Godot': 'Godot',
     'Unity': 'Unity',
     'Blender': 'Blender',
@@ -71,29 +66,21 @@ cartouches.forEach(cartouche => {
         
         const title = cartouche.dataset.title;
         const description = cartouche.dataset.description;
-        
         const videoSrc = cartouche.dataset.videosrc || ''; 
-        
-        
         const skills = JSON.parse(cartouche.dataset.skills || '[]');
         const tasks = JSON.parse(cartouche.dataset.tasks || '[]');
         const photos = JSON.parse(cartouche.dataset.photos || '[]');
         
         modalTitle.textContent = title;
         modalDescription.textContent = description;
-        
         modalVideo.src = videoSrc;
-        
         modalVideo.muted = true;
-        
-        // Petite sécurité pour éviter les erreurs sur mobile
         modalVideo.playsInline = true; 
-        
         modalVideo.load();
 
         modalVideo.play().then(() => {
         }).catch(error => {
-            console.error("Échec de la lecture de la vidéo.", error);
+            console.error(error);
         });
         
         modalSkillsContainer.innerHTML = '';
@@ -140,7 +127,7 @@ cartouches.forEach(cartouche => {
                 
                 const img = document.createElement('img');
                 img.src = photoSrc;
-                img.alt = `Photo ${index + 1} du projet`;
+                img.alt = `Photo ${index + 1}`;
                 
                 galleryItem.appendChild(img);
                 galleryItem.addEventListener('click', (e) => {
@@ -154,6 +141,10 @@ cartouches.forEach(cartouche => {
             modal.querySelector('.modal-gallery-section').style.display = 'none';
         }
         
+        if (cartouche.id) {
+            window.history.replaceState(null, null, '#' + cartouche.id);
+        }
+        
         modal.classList.add('show');
         modal.setAttribute('aria-hidden', 'false');
     });
@@ -164,6 +155,7 @@ modalClose.addEventListener('click', () => {
     modal.setAttribute('aria-hidden', 'true');
     modalVideo.pause();
     modalVideo.src = '';
+    window.history.replaceState(null, null, window.location.pathname);
 });
 
 modal.addEventListener('click', (e) => {
@@ -172,6 +164,7 @@ modal.addEventListener('click', (e) => {
         modal.setAttribute('aria-hidden', 'true');
         modalVideo.pause();
         modalVideo.src = '';
+        window.history.replaceState(null, null, window.location.pathname);
     }
 });
 
@@ -217,24 +210,16 @@ const allCartouches = document.querySelectorAll('.cartouche');
 
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-
         filterButtons.forEach(btn => btn.classList.remove('active'));
-        
- 
         button.classList.add('active');
-        
- 
         const filter = button.dataset.filter;
         
- 
         allCartouches.forEach(cartouche => {
             const tags = cartouche.dataset.tags || '';
             
             if (filter === 'all') {
- 
                 cartouche.classList.remove('hidden');
             } else {
- 
                 if (tags.includes(filter)) {
                     cartouche.classList.remove('hidden');
                 } else {
@@ -243,4 +228,16 @@ filterButtons.forEach(button => {
             }
         });
     });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+        const targetId = window.location.hash.substring(1); 
+        const targetCartouche = document.getElementById(targetId);
+        
+        if (targetCartouche) {
+            targetCartouche.click();
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 });
