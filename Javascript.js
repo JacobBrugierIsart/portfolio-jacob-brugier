@@ -1,12 +1,12 @@
 function createSnowflakes() {
     const snowContainer = document.getElementById('snow');
-    const numberOfSnowflakes = 150;
+    const numberOfSnowflakes = 50;
 
     for (let i = 0; i < numberOfSnowflakes; i++) {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
         
-        const size = Math.random() * 70;
+        const size = Math.random() * 50 + 10;
         snowflake.style.width = `${size}px`;
         snowflake.style.height = `${size}px`;
         
@@ -60,7 +60,10 @@ const skillLabels = {
     'Godot': 'Godot',
     'Unity': 'Unity',
     'Blender': 'Blender',
-    'Git': 'Git'
+    'Git': 'Git',
+    'Unreal': 'Unreal',
+    'GroupProject': 'Group Project',
+    'SoloProject': 'Solo Project'
 };
 
 cartouches.forEach(cartouche => {
@@ -130,7 +133,8 @@ cartouches.forEach(cartouche => {
                 
                 const img = document.createElement('img');
                 img.src = photoSrc;
-                img.alt = `Photo ${index + 1}`;
+                img.alt = `${title} screenshot ${index + 1}`;
+                img.loading = 'lazy';
                 
                 galleryItem.appendChild(img);
                 galleryItem.addEventListener('click', (e) => {

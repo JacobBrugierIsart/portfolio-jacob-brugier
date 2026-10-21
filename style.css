@@ -854,3 +854,14 @@ main {
         display: none;
     }
 }
+
+/* Pixel font for titles, matching the pixel-art theme */
+h1, h2, h3, .cartouche-title, .back-title, .filter-label {
+    font-family: "Pixelify Sans", "Segoe UI", system-ui, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.footer-copy {
+    opacity: 0.8;
+    margin-top: 10px;
+}
