@@ -31,6 +31,8 @@ const modalSkillsContainer = modal.querySelector('.modal-skills .skills-containe
 const modalTasksList = modal.querySelector('.tasks-list');
 const modalGalleryContainer = modal.querySelector('.gallery-container');
 const modalClose = modal.querySelector('.modal-close');
+const modalPdfSection = modal.querySelector('.modal-pdf-section');
+const modalPdfLink = modalPdfSection.querySelector('.pdf-open-btn');
 
 const imageModal = document.getElementById('imageModal');
 const fullScreenImage = imageModal.querySelector('.full-screen-image');
@@ -44,6 +46,7 @@ let currentPhotoIndex = 0;
 const skillIcons = {
     'Godot': 'assets/icons/godot-icon.png',
     'Unity': 'assets/icons/unity-icon.png',
+    'Unreal': 'assets/icons/unreal-icon.png',
     'Csharp': 'assets/icons/csharp-icon.png',
     'English': 'assets/icons/english-icon.png',
     'HTML': 'assets/icons/html-icon.png',
@@ -139,6 +142,14 @@ cartouches.forEach(cartouche => {
             });
         } else {
             modal.querySelector('.modal-gallery-section').style.display = 'none';
+        }
+        
+        const pdfSrc = cartouche.dataset.pdf || '';
+        if (pdfSrc) {
+            modalPdfSection.style.display = 'block';
+            modalPdfLink.href = pdfSrc;
+        } else {
+            modalPdfSection.style.display = 'none';
         }
         
         if (cartouche.id) {
