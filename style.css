@@ -865,3 +865,90 @@ h1, h2, h3, .cartouche-title, .back-title, .filter-label {
     opacity: 0.8;
     margin-top: 10px;
 }
+
+/* ---------- Mobile fixes: compact header + tidy filters ---------- */
+@media (max-width: 900px) {
+    header {
+        padding: 8px 12px;
+    }
+
+    .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .logo-window {
+        flex-direction: row;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .mountain-logo {
+        max-height: 30px;
+    }
+
+    h1 {
+        font-size: 16px;
+        margin: 0;
+        line-height: 1.15;
+        white-space: nowrap;
+    }
+
+    h1 span {
+        display: block;
+        font-size: 10.5px;
+    }
+
+    nav ul {
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    main {
+        padding-top: 90px;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .filter-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        width: 100%;
+    }
+
+    .filter-btn {
+        justify-content: center;
+        padding: 8px 4px;
+        font-size: 13px;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 360px) {
+    header { padding: 8px 8px; }
+    .logo-window { gap: 6px; }
+    nav ul { gap: 7px; }
+    nav a { font-size: 12px; }
+    h1 { font-size: 14px; }
+    h1 span { font-size: 9.5px; }
+}
+
+@media (max-width: 340px) {
+    .mountain-logo { display: none; }
+}
