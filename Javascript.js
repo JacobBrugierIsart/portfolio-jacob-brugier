@@ -148,10 +148,21 @@ cartouches.forEach(cartouche => {
             modal.querySelector('.modal-gallery-section').style.display = 'none';
         }
         
-        const pdfSrc = cartouche.dataset.pdf || '';
-        if (pdfSrc) {
+        const linkHref = cartouche.dataset.linkHref || '';
+        if (linkHref) {
             modalPdfSection.style.display = 'block';
-            modalPdfLink.href = pdfSrc;
+            modalPdfLink.href = linkHref;
+            modalPdfSection.querySelector('.link-heading').textContent = cartouche.dataset.linkHeading || '';
+            modalPdfSection.querySelector('.pdf-note').textContent = cartouche.dataset.linkNote || '';
+            modalPdfSection.querySelector('.link-label').textContent = cartouche.dataset.linkLabel || 'Open';
+            const icon = modalPdfSection.querySelector('.link-icon');
+            if (cartouche.dataset.linkIcon) {
+                icon.src = cartouche.dataset.linkIcon;
+                icon.style.display = '';
+            } else {
+                icon.removeAttribute('src');
+                icon.style.display = 'none';
+            }
         } else {
             modalPdfSection.style.display = 'none';
         }

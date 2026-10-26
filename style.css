@@ -636,7 +636,9 @@ main {
 .pdf-open-btn { flex-shrink: 0; }
 
 .pdf-open-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 14px;
     background: #082436;
     color: #9be7ff;
@@ -646,6 +648,12 @@ main {
 }
 
 .pdf-open-btn:hover { transform: scale(1.03); }
+
+.link-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
 
 .modal-photo { z-index: 101; }
 
