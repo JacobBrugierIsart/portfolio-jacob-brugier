@@ -267,3 +267,92 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+/* ---------- Header: solid background once the page is scrolled ---------- */
+const siteHeader = document.querySelector('header');
+function updateHeader() {
+    siteHeader.classList.toggle('scrolled', window.scrollY > 20);
+}
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
+/* ---------- Pop-up TV player controls ---------- */
+const tvPlay = modal.querySelector('.tv-play');
+const tvSound = modal.querySelector('.tv-sound');
+const tvFull = modal.querySelector('.tv-full');
+const tvProgress = modal.querySelector('.tv-progress');
+
+function refreshTvButtons() {
+    tvPlay.textContent = modalVideo.paused ? '▶' : '❚❚';
+    tvSound.textContent = modalVideo.muted ? 'SOUND OFF' : 'SOUND ON';
+}
+
+function togglePlay() {
+    if (modalVideo.paused) modalVideo.play().catch(() => {});
+    else modalVideo.pause();
+}
+
+tvPlay.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+modal.querySelector('.tv-screen').addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+tvSound.addEventListener('click', (e) => {
+    e.stopPropagation();
+    modalVideo.muted = !modalVideo.muted;
+    refreshTvButtons();
+});
+tvFull.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (modalVideo.requestFullscreen) modalVideo.requestFullscreen();
+    else if (modalVideo.webkitEnterFullscreen) modalVideo.webkitEnterFullscreen();
+});
+['play', 'pause', 'volumechange', 'loadeddata'].forEach(evt => modalVideo.addEventListener(evt, refreshTvButtons));
+modalVideo.addEventListener('timeupdate', () => {
+    const pct = modalVideo.duration ? (modalVideo.currentTime / modalVideo.duration) * 100 : 0;
+    tvProgress.style.width = pct + '%';
+});
+
+/* ---------- Talking bird ---------- */
+const birdImg = document.querySelector('.bird-character');
+const bubble = document.querySelector('.bubble-text');
+const birdLines = [
+    'Looking for an internship!\n- Feb-Apr 2027\n- 1 to 3 months\n- Full time\n- Game programming\n- Game design\n- QA testing',
+    'Click a cartridge to see the game, the video and what Jacob did on it.',
+    'Soko 1977 was his internship in Berlin. 4 months, all in English!',
+    'You can find his resume (PDF) at the very bottom of the page.',
+    'Want to hire him? His email is in the footer too. Tweet!'
+];
+let birdIndex = 0;
+let typingTimer = null;
+
+function sayLine(text) {
+    clearInterval(typingTimer);
+    bubble.textContent = '';
+    bubble.classList.add('typing');
+    let i = 0;
+    typingTimer = setInterval(() => {
+        bubble.textContent = text.slice(0, ++i);
+        if (i >= text.length) {
+            clearInterval(typingTimer);
+            typingTimer = null;
+            bubble.classList.remove('typing');
+        }
+    }, 28);
+}
+
+function nextBirdLine() {
+    if (typingTimer) {
+        // Click while typing: show the whole line at once
+        clearInterval(typingTimer);
+        typingTimer = null;
+        bubble.textContent = birdLines[birdIndex];
+        bubble.classList.remove('typing');
+        return;
+    }
+    birdIndex = (birdIndex + 1) % birdLines.length;
+    sayLine(birdLines[birdIndex]);
+}
+
+if (birdImg && bubble) {
+    birdImg.addEventListener('click', nextBirdLine);
+    bubble.addEventListener('click', nextBirdLine);
+    sayLine(birdLines[0]);
+}

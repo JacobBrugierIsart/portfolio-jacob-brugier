@@ -414,9 +414,14 @@
             <div class="modal-left">
                 <div class="tv-frame">
                     <div class="tv-screen">
-                        <video autoplay muted loop playsinline controls></video>
+                        <video autoplay muted loop playsinline></video>
+                        <div class="tv-progress"></div>
                     </div>
-                    <div class="tv-controls"></div>
+                    <div class="tv-controls">
+                        <button class="tv-btn tv-play" aria-label="Play / pause">❚❚</button>
+                        <button class="tv-btn tv-sound" aria-label="Sound on / off">SOUND OFF</button>
+                        <button class="tv-btn tv-full" aria-label="Fullscreen">⛶</button>
+                    </div>
                 </div>
                 <div class="modal-skills">
                     <h3>Skills used:</h3>
@@ -456,7 +461,7 @@
 
     <div class="bird-bubble-container">
         <div class="bird-bubble">
-            <img src="assets/CelesteImages/CelesteBirdResize.png" alt="Mascot Bird" class="bird-character">
+            <img src="assets/CelesteImages/CelesteBirdResize.png" alt="Mascot bird, click it to talk" class="bird-character" title="Click me!">
             <div class="bubble-text">
                 <div>Looking for an internship!</div>
                 <div><br>- Feb-Apr 2027</div>
