@@ -383,15 +383,19 @@ document.querySelectorAll('.cartouche').forEach(cartouche => {
     const container = cartouche.querySelector('.back-skills');
     if (!container) return;
     JSON.parse(cartouche.dataset.skills || '[]').forEach(skill => {
-        const tag = document.createElement('span');
-        tag.className = 'back-skill';
+        // Same badge as the "skills" list at the top of the page
+        const tag = document.createElement('div');
+        tag.className = 'skill-box';
         if (skillIcons[skill]) {
             const icon = document.createElement('img');
             icon.src = skillIcons[skill];
             icon.alt = '';
+            icon.className = 'skill-icon';
             tag.appendChild(icon);
         }
-        tag.appendChild(document.createTextNode(skillLabels[skill] || skill));
+        const label = document.createElement('span');
+        label.textContent = skillLabels[skill] || skill;
+        tag.appendChild(label);
         container.appendChild(tag);
     });
 });

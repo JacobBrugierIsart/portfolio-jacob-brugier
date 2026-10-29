@@ -1271,31 +1271,27 @@ nav a:hover { color: var(--accent); text-decoration: none; }
     text-shadow: none;
 }
 
-.cartouche-title { color: #14202b; }
-.cartouche-subtitle { color: #2b3a46; font-weight: 600; }
+.cartouche-title, .cartouche-subtitle {
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);   /* crisp, no blur */
+}
 
 /* Back of the cartridge: skills used on the project */
 .back-skills {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     padding: 4px 24px 70px;
 }
 
-.back-skill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 7px;
-    font-size: 12px;
-    color: #e9f6ff;
-    background: #0a2236;
-    border: 2px solid #000814;
+.back-skills .skill-box {
+    padding: 5px 9px;
+    font-size: 13px;
+    box-shadow: 3px 3px 0 #000814;
 }
 
-.back-skill img {
-    width: 14px;
-    height: 14px;
-    object-fit: contain;
+.back-skills .skill-icon {
+    width: 16px;
+    height: 16px;
 }
