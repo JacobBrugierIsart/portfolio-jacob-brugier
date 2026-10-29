@@ -305,7 +305,27 @@ tvFull.addEventListener('click', (e) => {
     else if (modalVideo.webkitEnterFullscreen) modalVideo.webkitEnterFullscreen();
 });
 ['play', 'pause', 'volumechange', 'loadeddata'].forEach(evt => modalVideo.addEventListener(evt, refreshTvButtons));
+const tvTimeline = modal.querySelector('.tv-timeline');
+let scrubbing = false;
+function seekFromEvent(e) {
+    if (!modalVideo.duration) return;
+    const rect = tvTimeline.getBoundingClientRect();
+    const ratio = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+    modalVideo.currentTime = ratio * modalVideo.duration;
+    tvProgress.style.width = (ratio * 100) + '%';
+}
+tvTimeline.addEventListener('click', (e) => e.stopPropagation());
+tvTimeline.addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+    scrubbing = true;
+    tvTimeline.setPointerCapture(e.pointerId);
+    seekFromEvent(e);
+});
+tvTimeline.addEventListener('pointermove', (e) => { if (scrubbing) seekFromEvent(e); });
+tvTimeline.addEventListener('pointerup', () => { scrubbing = false; });
+
 modalVideo.addEventListener('timeupdate', () => {
+    if (scrubbing) return;
     const pct = modalVideo.duration ? (modalVideo.currentTime / modalVideo.duration) * 100 : 0;
     tvProgress.style.width = pct + '%';
 });
@@ -356,3 +376,22 @@ if (birdImg && bubble) {
     bubble.addEventListener('click', nextBirdLine);
     sayLine(birdLines[0]);
 }
+
+
+/* ---------- Back of the cartridges: list the skills used ---------- */
+document.querySelectorAll('.cartouche').forEach(cartouche => {
+    const container = cartouche.querySelector('.back-skills');
+    if (!container) return;
+    JSON.parse(cartouche.dataset.skills || '[]').forEach(skill => {
+        const tag = document.createElement('span');
+        tag.className = 'back-skill';
+        if (skillIcons[skill]) {
+            const icon = document.createElement('img');
+            icon.src = skillIcons[skill];
+            icon.alt = '';
+            tag.appendChild(icon);
+        }
+        tag.appendChild(document.createTextNode(skillLabels[skill] || skill));
+        container.appendChild(tag);
+    });
+});
